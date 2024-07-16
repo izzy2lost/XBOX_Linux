@@ -50,15 +50,16 @@ jobs:
 
       - name: App Build
         run: |
-          msbuild $env:SolutionPath -target:Xbox%20Linux `
-            /p:Platform=$env:Platform `
-            /p:Configuration=$env:Configuration `
-            /p:UapAppxPackageBuildMode=$env:BuildMode `
-            /p:AppxBundle=$env:AppxBundle `
-            /p:PackageCertificateThumbprint="${{ env.THUMBPRINT }}" `
-            /p:AppxPackageTestDir="${{ env.PackageOutputRootDir }}\${{ env.PACKAGE_NAME }}" `
-            /p:RestorePackagesConfig=true  
-            /restore
+         msbuild /restore `
+         $env:SolutionPath `
+         /target:Xbox%20Linux `
+         /p:Platform=$env:Platform `
+         /p:Configuration=$env:Configuration `
+         /p:UapAppxPackageBuildMode=$env:BuildMode `
+         /p:AppxBundle=$env:AppxBundle `
+         /p:PackageCertificateThumbprint="${{ env.THUMBPRINT }}" `
+         /p:AppxPackageTestDir="${{ env.PackageOutputRootDir }}\${{ env.PACKAGE_NAME }}" `
+         /p:RestorePackagesConfig=true
         shell: pwsh
         
       - name: Clean the Package
