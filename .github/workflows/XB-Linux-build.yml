@@ -23,7 +23,7 @@ jobs:
       BuildMode: SideLoadOnly
       AppxBundle: Never
       ProjectPath: "uwp/Xbox Linux/Xbox Linux.csproj"
-      ProjectDirectory: ".\uwp\Xbox Linux"
+      ProjectDirectory: "./uwp/Xbox Linux"
       PackageOutputRootDir: C:\AppPackage
       PackageOutputDir: "uwp/Xbox Linux"
 
