@@ -52,7 +52,7 @@ jobs:
         run: |
          msbuild /restore `
          $env:SolutionPath `
-         /target:Xbox Linux `
+         /target:"Xbox Linux" `
          /p:Platform=$env:Platform `
          /p:Configuration=$env:Configuration `
          /p:UapAppxPackageBuildMode=$env:BuildMode `
