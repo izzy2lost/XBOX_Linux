@@ -17,15 +17,15 @@ jobs:
     runs-on: windows-2022
 
     env:
-      SolutionPath: uwp/Xbox%20Linux/Xbox%20Linux.sln
+      SolutionPath: "uwp/Xbox Linux/Xbox Linux.sln"
       Platform: x64
       Configuration: Release
       BuildMode: SideLoadOnly
       AppxBundle: Never
-      ProjectPath: uwp/Xbox%20Linux/Xbox%20Linux.csproj
-      ProjectDirectory: .\uwp\Xbox%20Linux
+      ProjectPath: "uwp/Xbox Linux/Xbox Linux.csproj"
+      ProjectDirectory: ".\uwp\Xbox Linux"
       PackageOutputRootDir: C:\AppPackage
-      PackageOutputDir: uwp/Xbox%20Linux
+      PackageOutputDir: "uwp/Xbox Linux"
 
     steps:
       - name: Checkout Repository
@@ -50,18 +50,18 @@ jobs:
 
       - name: App Build
         run: |
-         msbuild /restore `
-         $env:SolutionPath `
-         /target:"Xbox Linux" `
-         /p:Platform=$env:Platform `
-         /p:Configuration=$env:Configuration `
-         /p:UapAppxPackageBuildMode=$env:BuildMode `
-         /p:AppxBundle=$env:AppxBundle `
-         /p:PackageCertificateThumbprint="${{ env.THUMBPRINT }}" `
-         /p:AppxPackageTestDir="${{ env.PackageOutputRootDir }}\${{ env.PACKAGE_NAME }}" `
-         /p:RestorePackagesConfig=true
+          msbuild /restore `
+            "$env:SolutionPath" `
+            /target:"Xbox Linux" `
+            /p:Platform=$env:Platform `
+            /p:Configuration=$env:Configuration `
+            /p:UapAppxPackageBuildMode=$env:BuildMode `
+            /p:AppxBundle=$env:AppxBundle `
+            /p:PackageCertificateThumbprint="${{ env.THUMBPRINT }}" `
+            /p:AppxPackageTestDir="${{ env.PackageOutputRootDir }}\${{ env.PACKAGE_NAME }}" `
+            /p:RestorePackagesConfig=true
         shell: pwsh
-        
+
       - name: Clean the Package
         run: |
           $PackagePath = "${{ env.PackageOutputRootDir }}\${{ env.PACKAGE_NAME }}"
